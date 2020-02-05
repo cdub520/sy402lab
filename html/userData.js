@@ -26,7 +26,7 @@ $(document).ready(function(){
                                     firstRow=false;
                               }
                               else{
-                                    tableEntry+="<tr><td></td><td>"+service+"</td>"+"<td>"+data[ip][service]+'</td></tr>'
+                                    tableEntry+="<tr><td colspan='2'>"+service+"</td>"+"<td>"+data[ip][service]+'</td></tr>'
                               }
                         }
                   }
