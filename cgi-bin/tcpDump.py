@@ -6,7 +6,7 @@ def tokenizeOutput(text):
     x = re.search(rgxStr,text)
     print(x.group())
     input()
-    if x = None:
+    if x == None:
         return 1
     hostIP=x[0]
     hostService=x[1]
