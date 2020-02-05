@@ -4,7 +4,7 @@ import re
 def tokenizeOutput(text):
     rgxStr='[\d]*\:[\d]*\:[\d]*\.[\d]* IP ([\d]*\.[\d]*.[\d]*\.[\d]*)\.(\w*|\d*) \> ([\d]*\.[\d]*.[\d]*\.[\d]*\.)(\w*|\d*)'
     x = re.search(rgxStr,text)
-    if x = None:
+    if x == None:
         return 1
     hostIP=x[0]
     hostService=x[1]
