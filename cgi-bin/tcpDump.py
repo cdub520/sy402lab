@@ -8,7 +8,7 @@ def tokenizeOutput(text):
 try:
     p = subprocess.Popen(('sudo', 'tcpdump', '-l'), stdout=subprocess.PIPE)
     for row in iter(p.stdout.readline, b''):
-        tokenizeOutput(row)
+        tokenizeOutput(str(row))
 
 
 except KeyboardInterrupt:
