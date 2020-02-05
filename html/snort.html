@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>3-Snort Lab</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar">
+          <a href="snort.html">3-Snort Lab</a>
+        </span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-8 text-left">
+      <h1> Snort Lab Rules</h1>
+      <ul>
+        <li>
+          <b>What does the following Snort rule do?</b><br>
+          <code>alert tcp any any -> any any (msg:"FoundIt!";content:"Search Phrase";sid:2000001;rev:1;)</code>
+          <br>
+          The type of trigger is an alert from any ip from any port to any ip we are monitoring and any port, then the message "FoundIt!" is displayed when there is packet that has the content "search phrase"
+        </li>
+        <li>
+          <b>Edit the file /etc/snort/rules/local.rules and create a rule that will trigger when someone views your webpage from within of 10.10.x.x</b>
+          <br>
+          <code>alert tcp 10.10.0.0/16 any -> 10.10.2.47 80 (msg:"Html reached from within the network";sid:2067621;rev:1;)</code>
+        </li>
+        <li>
+          <b>Make a second web traffic rule that triggers on web traffic coming from outside of 10.10.x.x.</b>
+          <br>
+          <code>alert tcp !10.10.0.0/16 any -> 10.10.2.47 80 (msg:"Html reached from outside network";sid:2067622;rev:1;)</code>
+        </li>
+        <li>
+          <b>Snort has installed a large number of community rules in /etc/snort/rules. Take a look at the telnet.rules files. Describe what the first rule is doing?</b>
+          <br>
+          <code>alert tcp $EXTERNAL_NET any -> $TELNET_SERVERS 23 (msg:"TELNET SOLARIS...memory management exploit"; flow:to_server,established; content:"|A0 23 A0 10 AE 23.....|";classtype:shellcode-detect; sid:1430; rev:7;)</code>
+          <br>
+          So it is an alert from any external ip to our configured telnet servers that contain a content listed above as a common shell code executable that exploits an overflow error.
+        </li>
+        <li>
+          <b>Look through the rules in /etc/snort/rules, this is the standard snort ruleset that is provided for free, and probably forms the basis of many Network Intrusion Detection Systems. Knowing this, if you were an attacker why would you want to track the free, community, and paid editions of Snort rules?</b>
+          <br>
+          I would focus on tracking the free set of community rules because if something is offered for free, the host is more likely to use it
+        </li>
+        <li>
+          <b>Rules for detecting ping messages</b>
+          <br>
+          <code>alert icmp any any -> 10.10.2.47 22 (msg:"ping detected"; sid:2067625; classtype:icmp-event;)</code>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
