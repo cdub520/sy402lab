@@ -19,18 +19,18 @@ $(document).ready(function(){
                   tableEntry='';
                   for (var ip in data){
                         firstRow=true;
-                        tableEntry+="<tr><td>"+ip+'</td><td>';
+                        tableEntry+="<tr><td>"+ip+'</td>';
                         for (var service in data[ip]){
                               if (firstRow){
                                     tableEntry+="<td>"+service+'</td>'+"<td>"+data[ip][service]+"</td></tr>"
                                     firstRow=false;
                               }
                               else{
-                                    tableEntry+="<tr><td colspan='2'>"+service+"</td>"+"<td>"+data[ip][service]+'</td></tr>'
+                                    tableEntry+="<tr><td></td><td>"+service+"</td>"+"<td>"+data[ip][service]+'</td></tr>'
                               }
                         }
                   }
-                  document.getElementById("tcpDump").innerHTML=tableEntry;
+                  document.getElementById("tcpDump").innerHTML+=tableEntry;
             });
 
 });
