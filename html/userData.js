@@ -19,7 +19,7 @@ $(document).ready(function(){
                   tableEntry='';
                   for (var ip in data){
                         firstRow=true;
-                        tableEntry+="<tr><td>"+ip+'</td><td>';
+                        tableEntry+="<tr><td>"+ip+'</td>';
                         for (var service in data[ip]){
                               if (firstRow){
                                     tableEntry+="<td>"+service+'</td>'+"<td>"+data[ip][service]+"</td></tr>"
@@ -30,7 +30,7 @@ $(document).ready(function(){
                               }
                         }
                   }
-                  document.getElementById("tcpDump").innerHTML=tableEntry;
+                  document.getElementById("tcpDump").innerHTML+=tableEntry;
             });
 
 });
